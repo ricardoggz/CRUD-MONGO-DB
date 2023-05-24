@@ -1,6 +1,9 @@
 //Mongoose y express
 const express = require('express')
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+//configuracion de variables de entorno
+dotenv.config()
 //controladores
 const {
     saveUser,
@@ -16,8 +19,9 @@ const server = express()
 server.use(express.json())
 
 //Conexión con mongo compass
-mongoose.connect('mongodb://localhost:27017/users')
+mongoose.connect(`${process.env.MONGO_URI}`)
 .then(()=> console.log('Conectado a la base de datos'))
+.catch((error)=> console.log('error' + error))
 
 //Levantar nuestro servidor
 server.listen(3030, ()=>{
