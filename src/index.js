@@ -9,7 +9,8 @@ const {
     saveUser,
     getAllUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 } = require('./controllers/user.controller.js')
 
 //Instanciar express
@@ -39,3 +40,6 @@ server.put('/users/:id', updateUser)
 
 //ruta (endopint) para eliminar un usuario
 server.delete('/users/:id', deleteUser)
+
+//ruta (endpoint) para inicio de sesión de un usuario
+server.post('/login', loginUser)

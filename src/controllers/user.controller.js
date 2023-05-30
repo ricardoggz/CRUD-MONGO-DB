@@ -88,9 +88,31 @@ const deleteUser = async(req, res)=>{
     }
 }
 
+//login
+const loginUser = async(req, res)=>{
+    try {
+       const user = await userModel.findOne({
+        email: req.body.email,
+        password: req.body.password
+       })
+       if(!user) return res.json({
+        message: 'Usuario no encontrado',
+        isAuth: false
+       })
+       return res.json({
+        message: 'Acceso correcto',
+        isAuth: true
+       })
+    } catch (error) {
+        return res.json({
+            error: error
+        })
+    }
+}
 module.exports ={
     saveUser,
     getAllUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 }
