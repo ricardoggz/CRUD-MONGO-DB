@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const cors = require('cors')
 //configuracion de variables de entorno
 dotenv.config()
 //controladores
@@ -18,7 +19,7 @@ const server = express()
 
 //middlewares
 server.use(express.json())
-
+server.use(cors())
 //Conexión con mongo compass
 mongoose.connect(`${process.env.MONGO_URI}`)
 .then(()=> console.log('Conectado a la base de datos'))
